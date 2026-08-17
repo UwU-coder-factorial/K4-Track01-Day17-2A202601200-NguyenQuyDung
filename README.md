@@ -1,102 +1,141 @@
-# K4-Track01-Day17-2A202601200-NguyenQuyDung
+# Track 1 — Day 17: Finding and Validating Pain Points
 
-## Hội tụ Problem Hypothesis — Case A
+> Bài làm chung của **Nguyễn Quý Dũng** và **Trần Thị Kiều Trang**. Sau khi hoàn thiện, mỗi thành viên fork/đổi tên repo để nộp. Các nội dung ở Chặng 1 là giả thuyết; hai cuộc phỏng vấn trong buổi lab là dữ liệu luyện tập, chưa đủ để tuyên bố pain đã được validated.
 
-> **Trạng thái:** Giả thuyết chung trước phỏng vấn. Nội dung dưới đây chưa phải fact về user và chưa được validated.
+## 1. Thông tin cá nhân và nhóm
 
-### 1. Đối chiếu hai bản nháp cá nhân
+| Thành viên | MHV |
+| --- | --- |
+| Nguyễn Quý Dũng | 2A202601200 |
+| Trần Thị Kiều Trang | 2A202601498 |
 
-#### Điểm hai thành viên đồng thuận
+- **Nhóm:** Quý Dũng – Kiều Trang
+- **Case đã chọn:** Case A — AI Tutor: Diagnostic Refresher
 
-- Actor cần điều tra trước là **học viên** vì họ trực tiếp gặp khó khăn, thực hiện workaround và chịu hậu quả.
-- Situation bắt đầu khi học viên gặp một đoạn giải thích hoặc bài tập chưa hiểu nhưng vẫn muốn tiếp tục bài học.
-- Rào cản có thể nằm ở việc học viên không xác định được mình đang thiếu hoặc hiểu sai khái niệm nền nào.
-- Workaround có thể gồm đọc lại, xem bài trước, tìm nguồn khác, hỏi bạn hoặc hỏi giảng viên.
-- Hậu quả cần kiểm chứng gồm mất thời gian, gián đoạn nhịp học, học tiếp trong trạng thái mơ hồ, bỏ qua nội dung hoặc dừng bài.
-- Giả thuyết chỉ đứng vững nếu việc bổ sung đúng kiến thức nền thực sự giúp học viên quay lại và tiếp tục phần hiện tại.
+## 2. Problem Hypothesis Brief
 
-#### Điểm khác nhau giữa hai bản nháp
+### 2.1. Solution directive
 
-| Nội dung | Nháp Quý Dũng | Nháp Kiều Trang | Quyết định hội tụ |
+Thêm nút “Tôi vẫn chưa hiểu” vào bài học. Khi học viên bấm nút, AI Tutor sử dụng bài hiện tại, các câu trả lời gần đây và lịch sử học tập để đặt 2–3 câu hỏi chẩn đoán, chọn một khái niệm nền cần ôn, tạo phần giải thích ngắn rồi đưa học viên trở lại bài đang học.
+
+### 2.2. Capability trung tính
+
+Giúp học viên đang mắc kẹt xác định điểm kiến thức cần bổ sung, nhận hỗ trợ phù hợp và lấy lại đủ hiểu biết để tiếp tục phần đang học.
+
+Capability này không mặc định phải được triển khai bằng một nút bấm, AI Tutor hoặc một giao diện cụ thể.
+
+### 2.3. Chuỗi thay đổi được kỳ vọng
+
+```text
+Học viên gặp chỗ chưa hiểu
+→ nhận ra mình cần trợ giúp và chủ động yêu cầu
+→ làm rõ nguyên nhân gây vướng
+→ nhận hỗ trợ tập trung vào nguyên nhân đó
+→ thử áp dụng lại vào phần hiện tại
+→ tiếp tục bài với mức độ hiểu tốt hơn
+```
+
+- **Output team có thể tạo:** câu hỏi làm rõ, nội dung hỗ trợ và đường quay lại bài hiện tại.
+- **Hành vi phải thay đổi:** học viên chủ động dừng lại, yêu cầu hỗ trợ và thử áp dụng nội dung được cung cấp.
+- **Outcome team chỉ có thể ảnh hưởng:** mức độ hiểu, thời gian xử lý chỗ vướng và khả năng tiếp tục/hoàn thành bài. Outcome còn phụ thuộc vào chất lượng bài học, động lực, thời gian và bối cảnh của học viên.
+
+### 2.4. Actor
+
+| Actor | Họ đang làm gì? | Pain hoặc hậu quả có thể có | Họ hưởng lợi thế nào? |
 | --- | --- | --- | --- |
-| Situation | Học viên lỡ nhịp bài giảng trên lớp do mất tập trung | Học viên gặp một phần chưa hiểu khi đang học | Chọn tình huống rộng hơn nhưng vẫn cụ thể: một lần chưa hiểu trong 7 ngày gần đây; lỡ nhịp trên lớp là một trường hợp có thể xuất hiện |
-| Job | Bắt kịp tiến độ với lớp | Hiểu đủ để tiếp tục bài hiện tại | Chốt job là lấy lại đủ hiểu biết để tiếp tục; trong lớp, điều này có thể biểu hiện thành bắt kịp tiến độ |
-| Pain chính | Không tự chẩn đoán được điểm hổng kiến thức | Không xác định được khái niệm nền đang thiếu hoặc hiểu sai | Hai cách diễn đạt cùng một rào cản, được gộp thành Hypothesis A |
-| Cách giải thích cạnh tranh | Ngại hỏi hoặc ngại làm gián đoạn lớp | Cách trình bày hiện tại quá trừu tượng hoặc thiếu ví dụ | Giữ cả hai như những nguyên nhân thay thế cần tìm trong evidence |
+| Học viên | Cố hiểu và hoàn thành phần đang học | Không xác định được điểm vướng; tìm kiếm lan man; mất nhịp, bỏ qua hoặc dừng bài | Nhận ra điểm vướng và tiếp tục học với ít gián đoạn hơn |
+| Giảng viên/coach | Hỗ trợ nhiều học viên trong thời gian giới hạn | Không thể phản hồi ngay từng trường hợp; phải giải thích lặp lại | Tập trung thời gian vào những ca cần con người hỗ trợ |
+| Người thiết kế nội dung | Xây dựng bài và chuỗi kiến thức | Khó dự đoán mọi chỗ học viên có thể hiểu sai hoặc bị thiếu nền | Nhận diện điểm gây vướng để cải thiện nội dung |
 
-### 2. Capability trung tính đã chốt
+**Actor điều tra trước:** học viên đã có lúc không hiểu một phần bài học gần đây và đã phải tìm cách xử lý.
 
-Giúp học viên đang mắc kẹt trong một bài học xác định điểm kiến thức cần bổ sung, nhận được hỗ trợ phù hợp và lấy lại đủ hiểu biết để tiếp tục phần đang học.
+**Lý do:** học viên trực tiếp trải nghiệm tình huống, thực hiện workaround và chịu hậu quả. Các actor còn lại liên quan nhưng không sở hữu pain chính trong giả thuyết Case A.
 
-Capability này không mặc định phải được triển khai bằng nút “Tôi vẫn chưa hiểu”, AI Tutor hay một giao diện cụ thể.
+### 2.5. Situation & Job
 
-### 3. Actor, Situation và Job đã chốt
-
-**Actor điều tra trước:** Học viên đã có lúc không hiểu một phần bài học trong vòng 7 ngày gần đây và đã phải tìm cách xử lý.
-
-**Situation & Job:** Khi gặp một đoạn giải thích hoặc bài tập chưa hiểu trong lúc học, học viên đang cố tìm ra điểm khiến mình bị mắc và bổ sung đủ kiến thức để tiếp tục bài hiện tại bằng cách đọc lại, xem nội dung trước đó, tìm nguồn khác hoặc hỏi người khác.
+**Situation & Job:** Khi gặp một đoạn giải thích hoặc bài tập chưa hiểu trong lúc học, học viên đang cố tìm ra điều khiến mình bị mắc và bổ sung đủ hiểu biết để tiếp tục bài bằng cách đọc lại, xem nội dung trước đó, tìm nguồn khác hoặc hỏi người khác.
 
 **JTBD Hypothesis:**
 
 > Khi gặp một phần chưa hiểu trong lúc học, tôi muốn xác định mình đang vướng ở đâu và lấy lại đủ kiến thức cần thiết, để có thể tiếp tục bài hiện tại mà không mất quá nhiều thời gian hoặc học tiếp trong trạng thái mơ hồ.
 
-### 4. Hai Pain Hypothesis cạnh tranh
+### 2.6. Hai Pain Hypothesis cạnh tranh
 
-#### Hypothesis A — Không xác định được lỗ hổng kiến thức nền
+**Hypothesis A — không xác định được lỗ hổng kiến thức nền**
 
-> Khi gặp một phần chưa hiểu trong bài học, học viên gặp khó khăn trong việc tiếp tục vì không xác định được khái niệm nền nào mình đang thiếu hoặc hiểu sai. Họ phải đọc lại, tìm kiếm nhiều nguồn hoặc hỏi người khác, dẫn đến mất thời gian, gián đoạn nhịp học và có thể bỏ qua phần chưa hiểu hoặc dừng bài.
+> Khi gặp một phần chưa hiểu trong bài học, học viên gặp khó khăn trong việc tiếp tục vì không xác định được khái niệm nền nào mình đang thiếu hoặc hiểu sai. Họ phải đọc lại, tìm nhiều nguồn hoặc hỏi người khác, dẫn đến mất thời gian, gián đoạn nhịp học và có thể bỏ qua phần chưa hiểu hoặc dừng bài.
 
-#### Hypothesis B — Nguyên nhân không nằm ở kiến thức nền
+**Hypothesis B — nguyên nhân chính không nằm ở kiến thức nền**
 
-> Khi gặp một phần chưa hiểu trong bài học, học viên gặp khó khăn trong việc tiếp tục chủ yếu vì cách trình bày hiện tại quá trừu tượng, thiếu ví dụ phù hợp hoặc vì họ ngại hỏi trong bối cảnh lớp học. Trong trường hợp này, ôn lại kiến thức nền không giải quyết được rào cản chính; học viên cần một cách giải thích khác hoặc một kênh hỏi thuận tiện hơn.
+> Khi gặp một phần chưa hiểu, học viên gặp khó khăn chủ yếu vì đã bỏ lỡ lời giải thích, cách trình bày hiện tại chưa phù hợp, thiếu ví dụ hoặc ngại hỏi trong bối cảnh lớp học. Khi đó, ôn kiến thức nền không xử lý đúng rào cản; học viên cần khôi phục phần giải thích đã bỏ lỡ, một ví dụ/cách giải thích khác hoặc một kênh hỏi thuận tiện hơn.
 
-### 5. Giả thuyết nhóm chọn để điều tra trước
+**Giả thuyết chọn điều tra trước:** Hypothesis A.
 
-Nhóm chọn **Hypothesis A** vì đây là giả định quan trọng nhất nằm sau solution directive của Case A. Cơ chế chẩn đoán và ôn tập chỉ có ý nghĩa nếu một phần đáng kể những lần “chưa hiểu” thực sự liên quan đến lỗ hổng kiến thức nền mà học viên chưa tự xác định được.
+**Lý do chọn:** đây là giả định quan trọng nhất nằm sau solution directive. Cơ chế chẩn đoán kiến thức nền chỉ có ý nghĩa nếu một phần đáng kể những lần “chưa hiểu” thực sự liên quan đến lỗ hổng mà học viên chưa tự xác định được. Hypothesis B được giữ lại để buộc nhóm tìm evidence có thể làm A yếu đi.
 
-Hypothesis B được giữ lại như cách giải thích cạnh tranh. Nếu evidence nghiêng về Hypothesis B, nhóm phải sửa Problem Hypothesis và không tiếp tục mặc định rằng chẩn đoán kiến thức nền là hướng phù hợp.
-
-### 6. Problem Hypothesis chung mang sang Chặng 2
-
-> Khi đang học và gặp một đoạn giải thích hoặc bài tập chưa hiểu, một số học viên gặp khó khăn trong việc tiếp tục bài vì không xác định được khái niệm nền nào mình đang thiếu hoặc hiểu sai. Họ phải tự đọc lại, xem bài trước, tìm kiếm nhiều nguồn hoặc hỏi người khác; quá trình này có thể làm mất thời gian, gián đoạn nhịp học và khiến họ bỏ qua phần chưa hiểu, học tiếp trong trạng thái mơ hồ hoặc dừng bài.
-
-### 7. Điều phải đúng để giả thuyết đứng vững
-
-- Học viên kể được một tình huống cụ thể trong 7 ngày gần đây, không chỉ đưa ra nhận xét chung chung.
-- Trong tình huống đó, họ thực sự muốn tiếp tục học nhưng không biết chính xác điểm kiến thức nào đang cản trở mình.
-- Họ đã thực hiện ít nhất một workaround và workaround đó tạo ra chi phí về thời gian, công sức hoặc sự gián đoạn.
-- Việc không xử lý được tạo ra hậu quả quan sát được đối với tiến độ, kết quả hoặc mức độ hiểu bài.
-- Khi tìm được và bổ sung đúng kiến thức nền, học viên có thể hiểu hoặc tiếp tục phần hiện tại tốt hơn.
-
-### 8. Điều khiến nhóm sửa hoặc bác bỏ giả thuyết
-
-- Tình huống hiếm khi xảy ra hoặc thường được xử lý nhanh bằng cách đọc lại.
-- Học viên đã biết rõ mình vướng ở đâu và workaround hiện tại đủ nhanh, đủ tốt.
-- Nguyên nhân chính là cách giải thích, ví dụ hoặc chất lượng nội dung hiện tại chứ không phải lỗ hổng kiến thức nền.
-- Rào cản chính là ngại hỏi hoặc không muốn làm gián đoạn lớp học.
-- Việc chưa hiểu không tạo hậu quả đáng kể và học viên vẫn đạt mục tiêu mà không cần xử lý.
-- Ôn lại kiến thức nền không giúp học viên tiếp tục được phần hiện tại.
-
-### 9. Evidence Map chung
+### 2.7. Evidence Map
 
 | Cần kiểm tra | Evidence làm nhóm tin hơn | Evidence làm nhóm nghi ngờ hoặc bác bỏ |
 | --- | --- | --- |
-| Situation có thật | Kể được lần gần nhất trong 7 ngày, gồm bối cảnh, điểm bắt đầu vướng và diễn biến tiếp theo | Không nhớ được sự kiện gần đây hoặc chỉ nói “thỉnh thoảng” |
-| Pain có ý nghĩa | Bị gián đoạn, mất thời gian, thay đổi kế hoạch học hoặc cảm thấy không thể tiếp tục | Đọc lại một lần là hiểu và xem đây là bất tiện nhỏ |
-| Workaround tồn tại | Đã đọc lại, quay về bài trước, tìm Google/YouTube/ChatGPT hoặc hỏi người khác | Không cần thực hiện hành động nào để xử lý |
-| Consequence tồn tại | Trả lời sai, bỏ qua nội dung, học tiếp mà không hiểu, dừng bài hoặc chậm tiến độ | Không ảnh hưởng đến tiến độ, mức độ hiểu hoặc kết quả |
-| Pattern có lặp | Có thể kể thêm những lần tương tự và nhận ra một kiểu vướng lặp lại | Chỉ xảy ra một lần do sự cố cá biệt |
-| Nguyên nhân là kiến thức nền | Sau khi được nhắc lại đúng khái niệm trước đó, học viên hiểu và tiếp tục được | Chỉ cách giải thích hoặc ví dụ khác mới giúp; ôn nền không có tác dụng |
+| Situation có thật | Kể được lần gần nhất gồm bối cảnh, mục tiêu, điểm bắt đầu vướng và diễn biến | Không nhớ được sự kiện gần đây; chỉ nói chung chung |
+| Pain có ý nghĩa | Bị gián đoạn, mất thời gian, thay đổi kế hoạch hoặc không thể tiếp tục | Đọc lại một lần là hiểu; chỉ là bất tiện nhỏ |
+| Workaround tồn tại | Đã đọc lại, quay về bài trước, tìm nguồn/AI hoặc hỏi người khác | Không cần thực hiện hành động nào để xử lý |
+| Consequence tồn tại | Bỏ lỡ phần sau, trả lời sai, bỏ qua, dừng bài hoặc chậm tiến độ | Không ảnh hưởng đến tiến độ, mức độ hiểu hoặc kết quả |
+| Pattern có lặp | Kể được thêm những lần tương tự và một kiểu vướng lặp lại | Chỉ xảy ra một lần do sự cố cá biệt |
+| Nguyên nhân là kiến thức nền | Xác định và bổ sung đúng khái niệm nền giúp học viên hiểu tiếp | Chỉ cần nghe lại phần đã bỏ lỡ, một ví dụ hoặc cách giải thích khác |
 
-### 10. Câu hỏi đáng sợ mang sang Chặng 2
+### 2.8. Problem Hypothesis mang sang Chặng 2
 
-> Trong lần gần nhất, điều thực sự giúp học viên hiểu và tiếp tục là tìm lại một kiến thức nền bị thiếu, hay chỉ là nhận được một cách giải thích hoặc ví dụ khác cho chính nội dung hiện tại?
+> Khi đang học và gặp một đoạn giải thích hoặc bài tập chưa hiểu, một số học viên gặp khó khăn trong việc tiếp tục vì không xác định được khái niệm nền nào mình đang thiếu hoặc hiểu sai. Họ phải đọc lại, xem bài trước, tìm nhiều nguồn hoặc hỏi người khác; quá trình này có thể làm mất thời gian, gián đoạn nhịp học và khiến họ bỏ qua phần chưa hiểu, học tiếp trong trạng thái mơ hồ hoặc dừng bài.
 
-Nếu câu trả lời chủ yếu là vế thứ hai, nhóm phải xem lại Hypothesis A.
+**Điều phải đúng để giả thuyết đứng vững:**
 
-## Conversation Guide — Big 3
+- Tình huống xảy ra đủ gần và đủ rõ để học viên kể lại bằng hành vi cụ thể.
+- Học viên muốn tiếp tục nhưng không xác định được điểm kiến thức đang cản mình.
+- Workaround hiện tại có chi phí về thời gian, công sức hoặc sự gián đoạn.
+- Việc không xử lý tạo ra hậu quả quan sát được.
+- Bổ sung đúng kiến thức nền giúp học viên tiếp tục phần hiện tại.
 
-### Tiêu chí tuyển người
+**Điều khiến nhóm sửa hoặc bác bỏ:**
+
+- Tình huống hiếm hoặc thường được giải quyết ngay bằng cách đọc lại.
+- Học viên biết rõ điểm vướng và workaround hiện tại đã đủ tốt.
+- Nguyên nhân chính là mất tập trung, bỏ lỡ lời giảng, cách giải thích hoặc ví dụ — không phải thiếu kiến thức nền.
+- Pain không tạo hậu quả đáng kể.
+- Ôn kiến thức nền không giúp học viên tiếp tục.
+
+### 2.9. Solution Parking Lot
+
+| Hướng giải quyết có thể có | Phân loại |
+| --- | --- |
+| Hỏi một số câu ngắn để xác định lỗ hổng và tạo phần ôn phù hợp | AI |
+| Tóm tắt phần nội dung học viên vừa bỏ lỡ và cho phép quay lại đúng mốc | AI |
+| Cung cấp bản đồ kiến thức nền và liên kết thủ công đến bài liên quan | Không sử dụng AI |
+| Bổ sung nhiều ví dụ, cách giải thích và bài tập mẫu ở điểm thường gây nhầm | Không sử dụng AI |
+| Cho phép gửi câu hỏi nhanh đến bạn học, mentor hoặc giảng viên | Không sử dụng AI |
+| Dùng kết quả bài kiểm tra ngắn để đề xuất lộ trình ôn tập | AI |
+
+## 3. Conversation Guide — phiên bản cuối sau luyện tập
+
+### 3.1. Tín hiệu rút ra từ hai lượt luyện
+
+- Câu hỏi về **lần gần nhất** đã mở được sự kiện cụ thể thay vì ý kiến chung.
+- Một người kể việc bị phân tâm trong lớp, bỏ lỡ phần giải thích, sau đó không nối được sang nội dung tiếp theo; họ tìm trên Internet/công cụ AI và hỏi bạn bên cạnh.
+- Ở lượt của Kiều Trang, người tham gia gặp khó khi phân biệt **capability của model** với **giá trị riêng của wrapper** và mất khoảng **20 phút**. Hậu quả là họ không tham gia được phần thảo luận và ban đầu hiểu nhầm wrapper chỉ là giao diện bên ngoài.
+- Người này từng không phân biệt được **foundation model** và **application layer**, phải hỏi trợ giảng sau giờ học. Họ hiểu được khi nghe giải thích rằng model có thể tích hợp dần tính năng, còn sản phẩm giữ phần **policy và trách nhiệm**, rồi tự trình bày lại được ý của slide.
+- Trong một tình huống đối chứng, họ hiểu “policy layer” ngay khi nhận được ví dụ về kiểm soát quyền truy cập. Lần đó rào cản là thiếu ví dụ, không phải bỏ lỡ cả chuỗi lập luận.
+- Những tín hiệu này cho thấy nguyên nhân cạnh tranh như bỏ lỡ lời giảng hoặc cần cách giải thích/ví dụ khác phải được kiểm tra nghiêm túc. Chúng chưa chứng minh Hypothesis A.
+- Các lượt luyện còn quá ngắn; interviewer đã chuyển câu hỏi sớm và chưa đào đủ trình tự, chi phí, kết quả cuối cùng và mức độ lặp lại.
+
+### 3.2. Những sửa đổi so với guide trước luyện
+
+1. Sau story opener, yêu cầu người tham gia kể theo trình tự trước khi chuyển sang câu hỏi khác.
+2. Mỗi workaround phải được đào sâu bằng: vì sao chọn, mất bao lâu, có hiệu quả không và sau đó làm gì.
+3. Thêm checkpoint bắt buộc về hậu quả, kết quả cuối cùng và pattern lặp lại trước khi kết thúc.
+4. Giữ câu hỏi nguyên nhân ở dạng trung tính để phân biệt lỗ hổng nền với mất tập trung, cách trình bày hoặc thiếu ví dụ.
+5. Bỏ câu xác nhận dẫn dắt như “việc đó cũng làm ảnh hưởng tiến độ của bạn đúng không?” và thay bằng “việc đó ảnh hưởng thế nào?”.
+
+### 3.3. Tiêu chí tuyển người
 
 Nhóm cần nói chuyện với người đã có ít nhất một lần không hiểu một đoạn giải thích hoặc bài tập và đã phải tìm cách xử lý trong vòng **7 ngày gần đây**.
 
@@ -104,50 +143,99 @@ Nhóm cần nói chuyện với người đã có ít nhất một lần không 
 
 > Trong 7 ngày gần đây, bạn có lần nào đang học mà gặp một đoạn giải thích hoặc bài tập chưa hiểu và đã phải tìm cách xử lý không?
 
-### Ba điều quan trọng nhất cần học
+### 3.4. Lời mở đầu và xin phép ghi âm
+
+> Cảm ơn bạn đã tham gia. Nhóm mình đang tìm hiểu cách người học xử lý khi gặp một phần chưa hiểu. Mình muốn nghe về trải nghiệm thực tế của bạn; không có câu trả lời đúng hay sai và mình sẽ không giới thiệu một tính năng. Nếu bạn đồng ý, mình xin ghi âm chỉ để xem lại, ghi notes và phục vụ bài học; bản ghi không được chia sẻ công khai. Bạn có đồng ý cho mình ghi âm không?
+
+Interviewer chỉ bắt đầu ghi sau khi nhận được câu trả lời đồng ý rõ ràng.
+
+### 3.5. Big 3
 
 | Big 3 | Điều cần học | Evidence cần tìm | Điều khiến nhóm xem lại giả thuyết |
 | --- | --- | --- | --- |
-| 1. Sự kiện và hành vi thực tế | Trong lần gần nhất, học viên đang cố làm gì, bắt đầu vướng ở đâu và đã xử lý theo trình tự nào? | Một câu chuyện cụ thể, hành động đã xảy ra và workaround thực tế | Interviewee không kể được sự kiện gần đây hoặc tự xử lý ngay mà không gặp rào cản đáng kể |
-| 2. Mức độ của pain | Workaround tốn bao nhiêu công sức và việc chưa hiểu gây ra hậu quả hay pattern gì? | Thời gian/công sức đã bỏ ra, gián đoạn, bỏ qua, dừng bài, ảnh hưởng kết quả và lần lặp lại | Đây chỉ là bất tiện nhỏ, hiếm xảy ra và không ảnh hưởng đến mục tiêu học |
-| 3. Nguyên nhân thật sự — câu hỏi đáng sợ | Điều gì cuối cùng giúp học viên tiếp tục: bổ sung kiến thức nền hay một yếu tố khác? | Diễn biến trước–sau khi vấn đề được giải quyết và một tình huống đối chứng | Học viên chỉ cần cách giải thích/ví dụ khác, một kênh hỏi thuận tiện hơn hoặc workaround hiện tại đã đủ tốt |
+| 1. Sự kiện và hành vi | Học viên đang cố làm gì, bắt đầu vướng ở đâu và đã xử lý theo trình tự nào? | Câu chuyện gần đây, hành động và workaround thực tế | Không có sự kiện gần đây hoặc tự xử lý ngay |
+| 2. Mức độ pain | Workaround tốn bao nhiêu thời gian/công sức; hậu quả và pattern ra sao? | Chi phí, gián đoạn, ảnh hưởng kết quả và lần lặp lại | Chỉ là bất tiện nhỏ, hiếm và không ảnh hưởng mục tiêu |
+| 3. Nguyên nhân thật sự | Điều gì cuối cùng giúp học viên tiếp tục và vì sao? | Diễn biến trước–sau và một tình huống đối chứng | Chỉ cần nghe lại, ví dụ/cách giải thích khác hoặc workaround hiện tại đã đủ tốt |
 
-### Lời mở đầu
+### 3.6. Story opener và câu hỏi chính
 
-> Cảm ơn bạn đã tham gia. Nhóm mình đang tìm hiểu cách người học xử lý khi gặp một phần chưa hiểu trong quá trình học. Mình muốn nghe về trải nghiệm thực tế của bạn, không có câu trả lời đúng hay sai. Mình sẽ không giới thiệu hoặc xin nhận xét về một tính năng. Nếu bạn đồng ý, mình xin ghi âm cuộc trò chuyện chỉ để xem lại và làm bài học; bản ghi sẽ không được chia sẻ công khai.
+1. Kể cho mình nghe về **lần gần nhất trong 7 ngày vừa qua** bạn gặp một phần chưa hiểu khi đang học.
+2. Lúc đó bạn ở đâu, đang học nội dung gì và đang cố hoàn thành việc gì?
+3. Bạn nhận ra mình bị vướng từ chi tiết nào? Từ lúc đó, chuyện gì xảy ra tiếp theo?
+4. Bạn đã làm gì đầu tiên? Vì sao chọn cách đó? Sau đó bạn còn thử gì khác?
+5. Với từng cách đã thử: bạn mất bao lâu/công sức ra sao và điều gì cho thấy nó có hoặc không có tác dụng?
+6. Việc chưa hiểu ảnh hưởng cụ thể thế nào đến buổi học, phần thảo luận, bài làm, tiến độ hoặc quyết định tiếp tục/dừng lại?
+7. Cuối cùng bạn có hiểu và tiếp tục được không? Điều gì cụ thể tạo ra thay đổi đó?
+8. Theo bạn, lúc đó mình đang thiếu điều gì để hiểu tiếp? Chi tiết nào trong câu chuyện khiến bạn nghĩ vậy?
+9. Lần gần nhất trước đó bạn gặp tình huống tương tự là khi nào? Bạn đã xử lý giống hay khác lần này?
+10. Kể một lần gần đây bạn thoát khỏi chỗ vướng nhanh hơn. Điều gì khác giữa hai lần?
 
-### 10 câu hỏi phỏng vấn
+Không cần đọc máy móc toàn bộ câu hỏi. Interviewer follow câu chuyện nhưng phải thu được đủ bối cảnh, hành vi, workaround, chi phí, hậu quả, kết quả và pattern trước khi kết thúc.
 
-#### Big 3.1 — Sự kiện gần nhất và hành vi thực tế
-
-1. Kể cho mình nghe về **lần gần nhất trong 7 ngày vừa qua** bạn gặp một đoạn giải thích hoặc bài tập chưa hiểu khi đang học.
-2. Lúc đó bạn đang học nội dung gì, ở trong bối cảnh nào và đang cố hoàn thành việc gì?
-3. Chuyện gì cụ thể khiến bạn nhận ra mình chưa hiểu hoặc không thể tiếp tục như dự định?
-4. Ngay sau đó bạn đã làm gì? Bạn có thể kể lại từng bước theo đúng trình tự không?
-
-#### Big 3.2 — Workaround, hậu quả và mức độ lặp lại
-
-5. Ngoài cách đầu tiên, bạn đã thử thêm cách nào khác? Vì sao lúc đó bạn chọn những cách đó?
-6. Trong toàn bộ quá trình xử lý, phần nào khó hoặc tốn công nhất đối với bạn?
-7. Việc chưa hiểu đó đã ảnh hưởng thế nào đến buổi học, tiến độ, bài làm hoặc quyết định tiếp tục/dừng lại của bạn?
-8. Lần gần nhất trước đó bạn gặp tình huống tương tự là khi nào? Khi ấy bạn đã xử lý ra sao?
-
-#### Big 3.3 — Nguyên nhân và evidence có thể bác bỏ giả thuyết
-
-9. Nếu cuối cùng bạn đã hiểu hoặc tiếp tục được, điều gì cụ thể đã giúp bạn? Sau đó có thay đổi gì cho thấy bạn đã hiểu hơn?
-10. So với lần vừa kể, hãy kể một lần gần đây khác mà bạn thoát khỏi chỗ vướng khá nhanh. Điều gì ở lần đó khác với lần này?
-
-### Probe bank — chỉ dùng khi cần đào sâu
+### 3.7. Probe bank
 
 - “Lúc đó chuyện gì xảy ra tiếp theo?”
 - “Bạn đã làm gì cụ thể?”
 - “Vì sao bạn chọn cách đó?”
+- “Bạn mất khoảng bao nhiêu thời gian hoặc công sức?”
+- “Cách đó giúp đến đâu? Bạn dựa vào đâu để biết?”
 - “Bạn đã thử cách nào khác chưa?”
 - “Việc đó kéo theo hậu quả gì?”
-- “Bạn mất khoảng bao nhiêu thời gian hoặc công sức?”
-- “Chi tiết nào khiến bạn nghĩ cách đó đã giúp?”
 - “Lần gần nhất trước đó là khi nào?”
 
-Không cần đọc máy móc toàn bộ 10 câu. Interviewer dùng câu 1 làm story opener, follow câu chuyện và chỉ chuyển sang câu khác khi evidence tương ứng chưa xuất hiện.
+### 3.8. Phản xạ khi dữ liệu lệch
 
+| User đưa ra | Phản xạ | Cách quay lại evidence |
+| --- | --- | --- |
+| Lời khen | Deflect | Cảm ơn ngắn rồi quay lại sự kiện thực tế |
+| Câu chung chung/lời hứa tương lai | Anchor | “Lần gần nhất chuyện đó xảy ra là khi nào?” |
+| Ý tưởng hoặc feature request | Dig | “Điều đó giúp bạn làm được gì? Hiện tại bạn xử lý ra sao?” |
 
+## 4. Practice Reflection
+
+> **Lưu ý:** Đây là phần cá nhân trong repo làm chung. Mỗi thành viên phải tự nghe lại đúng lượt mình làm interviewer, xác nhận nội dung và chỉnh về giọng cá nhân trước khi fork/đổi tên repo để nộp.
+
+### 4.1. Nguyễn Quý Dũng
+
+#### Câu hỏi nào giúp user kể một tình huống cụ thể?
+
+Câu “Lúc đó bạn đang ở đâu và đang cố làm gì?” giúp làm lộ bối cảnh quan trọng: người tham gia vẫn ở trong lớp nhưng đang trả lời một tin nhắn trên điện thoại, nên bỏ lỡ phần giảng. Câu “Ngay sau đó bạn đã làm gì?” tiếp tục mở ra hai hành vi thật là tìm trên Internet/công cụ AI và hỏi bạn bên cạnh.
+
+#### Chỗ nào tôi cần làm tốt hơn ở lần phỏng vấn thật?
+
+Tôi đã chuyển giữa các câu hỏi quá nhanh và kết thúc khi câu chuyện mới chỉ mở ra. Tôi chưa hỏi đủ thời gian/công sức, hiệu quả của từng workaround, kết quả cuối cùng, mức độ lặp lại và liệu người học có thực sự thiếu kiến thức nền hay chỉ bỏ lỡ lời giải thích. Câu gần cuối có dạng xác nhận “cũng làm ảnh hưởng tiến độ... đúng không?” nên mang tính dẫn dắt. Lần sau tôi cần dùng câu trung tính, chờ người tham gia kể xong và follow từng tín hiệu bằng “chuyện gì xảy ra tiếp theo?” hoặc “điều gì cho thấy cách đó có tác dụng?”.
+
+#### Nhóm đã sửa Conversation Guide ở đâu và vì sao?
+
+Nhóm bổ sung một chuỗi probe bắt buộc cho từng workaround, thêm câu hỏi về kết quả cuối cùng và pattern, đồng thời viết lại câu hỏi hậu quả theo dạng mở. Nhóm cũng mở rộng Hypothesis B để bao gồm việc bỏ lỡ lời giảng và nhu cầu về ví dụ/cách giải thích khác, vì đây là các cách giải thích cạnh tranh đã xuất hiện trong hai lượt luyện.
+
+### 4.2. Trần Thị Kiều Trang
+
+#### Câu hỏi nào giúp user kể một tình huống cụ thể?
+
+Câu “Phần nào khó hoặc tốn công nhất?” giúp người tham gia chỉ ra đúng điểm vướng là phân biệt capability của model với giá trị riêng của wrapper và định lượng được chi phí khoảng 20 phút. Câu “Việc đó ảnh hưởng thế nào đến buổi học?” tiếp tục làm lộ hậu quả cụ thể: không tham gia được thảo luận và ban đầu hiểu nhầm wrapper chỉ là giao diện bên ngoài.
+
+#### Chỗ nào tôi cần làm tốt hơn ở lần phỏng vấn thật?
+
+Tôi đã lấy được chi phí, hậu quả và một tình huống đối chứng, nhưng chưa đào đầy đủ trình tự của sự kiện hiện tại: người tham gia đã làm gì đầu tiên, đã thử những workaround nào trước khi được giải thích và mỗi cách có hiệu quả ra sao. Lần sau tôi cần giữ câu chuyện ở một sự kiện đủ lâu, dùng “chuyện gì xảy ra tiếp theo?” và hỏi rõ thời điểm/tần suất để bảo đảm người tham gia đúng tiêu chí tuyển trong 7 ngày gần đây.
+
+#### Nhóm đã sửa Conversation Guide ở đâu và vì sao?
+
+Nhóm thêm probe về trình tự, thời gian, hiệu quả của từng workaround và evidence trước–sau. Guide cũng bổ sung tình huống đối chứng để phân biệt một lỗ hổng kiến thức nền với trường hợp người học chỉ thiếu ví dụ hoặc bỏ lỡ chuỗi lập luận. Việc sửa này xuất phát trực tiếp từ trường hợp “policy layer”: một ví dụ về kiểm soát quyền truy cập đã giúp người tham gia hiểu nhanh.
+
+## 5. AI Support Log
+
+| AI đã hỗ trợ gì? | Điểm sai/hời hợt hoặc rủi ro | Cách nhóm xử lý |
+| --- | --- | --- |
+| So sánh hai nháp Chặng 1 và sắp xếp Problem Hypothesis Brief theo rubric | AI có thể làm giả thuyết nghe chắc chắn hơn evidence thực có | Giữ nhãn “hypothesis”, nêu rõ điều kiện bác bỏ và không tuyên bố validated |
+| Rà soát câu hỏi dẫn dắt và đề xuất Conversation Guide sau luyện | Một guide dài có thể khiến interviewer đọc máy móc | Ghi rõ guide là xương sống; follow câu chuyện và dùng probe khi cần |
+| Chép lời sơ bộ hai bản ghi bằng nhận dạng giọng nói cục bộ | Một số thuật ngữ kỹ thuật bị nhận dạng sai; exact quote có nguy cơ sai | Nhóm cung cấp lại phần hỏi–đáp chuẩn để sửa các thuật ngữ `wrapper`, `foundation model`, `application layer` và `policy layer`; phần không nghe rõ không được dùng làm exact quote |
+| Đối chiếu bài với bốn gate và tạo cấu trúc `interview/notes.md` | AI không được bịa interview data hoặc viết reflection thay cho việc tự nghe lại | Mọi evidence đều truy về bản ghi/nội dung hỏi–đáp; Dũng và Trang phải tự nghe, xác nhận và chỉnh Reflection cá nhân trước khi nộp |
+
+## 6. Tệp phỏng vấn
+
+- Interview Record của cả hai lượt luyện: [`interview/notes.md`](interview/notes.md)
+- Bản ghi lượt Nguyễn Quý Dũng: [`interview/recording-quy-dung.m4a`](interview/recording-quy-dung.m4a)
+- Bản ghi lượt Kiều Trang dùng để chỉnh guide chung: [`interview/recording-kieu-trang.m4a`](interview/recording-kieu-trang.m4a)
+
+Các bản ghi chỉ được dùng để review và phục vụ bài học; không được chia sẻ công khai.
