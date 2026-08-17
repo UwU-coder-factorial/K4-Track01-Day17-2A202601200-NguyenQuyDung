@@ -145,7 +145,7 @@ Nhóm cần nói chuyện với người đã có ít nhất một lần không 
 
 ### 3.4. Lời mở đầu và xin phép ghi âm
 
-> Cảm ơn bạn đã tham gia. Nhóm mình đang tìm hiểu cách người học xử lý khi gặp một phần chưa hiểu. Mình muốn nghe về trải nghiệm thực tế của bạn; không có câu trả lời đúng hay sai và mình sẽ không giới thiệu một tính năng. Nếu bạn đồng ý, mình xin ghi âm chỉ để xem lại, ghi notes và phục vụ bài học; bản ghi không được chia sẻ công khai. Bạn có đồng ý cho mình ghi âm không?
+> Cảm ơn bạn đã tham gia. Nhóm mình đang tìm hiểu cách người học xử lý khi gặp một phần chưa hiểu. Mình muốn nghe về trải nghiệm thực tế của bạn; không có câu trả lời đúng hay sai và mình sẽ không giới thiệu một tính năng. Nếu bạn đồng ý, mình xin ghi âm chỉ để xem lại, ghi notes và phục vụ bài học. Bạn có đồng ý cho mình ghi âm không?
 
 Interviewer chỉ bắt đầu ghi sau khi nhận được câu trả lời đồng ý rõ ràng.
 
@@ -238,4 +238,4 @@ Nhóm thêm probe về trình tự, thời gian, hiệu quả của từng worka
 - Bản ghi lượt Nguyễn Quý Dũng: [`interview/recording-quy-dung.m4a`](interview/recording-quy-dung.m4a)
 - Bản ghi lượt Kiều Trang dùng để chỉnh guide chung: [`interview/recording-kieu-trang.m4a`](interview/recording-kieu-trang.m4a)
 
-Các bản ghi chỉ được dùng để review và phục vụ bài học; không được chia sẻ công khai.
+Các bản ghi chỉ được dùng để review và phục vụ bài học.
