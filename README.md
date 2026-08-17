@@ -94,8 +94,60 @@ Hypothesis B được giữ lại như cách giải thích cạnh tranh. Nếu e
 
 Nếu câu trả lời chủ yếu là vế thứ hai, nhóm phải xem lại Hypothesis A.
 
-## AI Support Log
+## Conversation Guide — Big 3
 
-- AI hỗ trợ đối chiếu hai bản nháp, chỉ ra phần đồng thuận và khác biệt, đồng thời đề xuất cách diễn đạt Problem Hypothesis chung có thể bị bác bỏ.
-- AI không tạo interview data, quote, recording hoặc tuyên bố pain đã được validated.
-- Hai thành viên cần tự đọc, thảo luận và xác nhận lại các quyết định hội tụ trước khi dùng nội dung này làm kết quả chính thức của nhóm.
+### Tiêu chí tuyển người
+
+Nhóm cần nói chuyện với người đã có ít nhất một lần không hiểu một đoạn giải thích hoặc bài tập và đã phải tìm cách xử lý trong vòng **7 ngày gần đây**.
+
+**Recruitment check — không tính là evidence chính:**
+
+> Trong 7 ngày gần đây, bạn có lần nào đang học mà gặp một đoạn giải thích hoặc bài tập chưa hiểu và đã phải tìm cách xử lý không?
+
+### Ba điều quan trọng nhất cần học
+
+| Big 3 | Điều cần học | Evidence cần tìm | Điều khiến nhóm xem lại giả thuyết |
+| --- | --- | --- | --- |
+| 1. Sự kiện và hành vi thực tế | Trong lần gần nhất, học viên đang cố làm gì, bắt đầu vướng ở đâu và đã xử lý theo trình tự nào? | Một câu chuyện cụ thể, hành động đã xảy ra và workaround thực tế | Interviewee không kể được sự kiện gần đây hoặc tự xử lý ngay mà không gặp rào cản đáng kể |
+| 2. Mức độ của pain | Workaround tốn bao nhiêu công sức và việc chưa hiểu gây ra hậu quả hay pattern gì? | Thời gian/công sức đã bỏ ra, gián đoạn, bỏ qua, dừng bài, ảnh hưởng kết quả và lần lặp lại | Đây chỉ là bất tiện nhỏ, hiếm xảy ra và không ảnh hưởng đến mục tiêu học |
+| 3. Nguyên nhân thật sự — câu hỏi đáng sợ | Điều gì cuối cùng giúp học viên tiếp tục: bổ sung kiến thức nền hay một yếu tố khác? | Diễn biến trước–sau khi vấn đề được giải quyết và một tình huống đối chứng | Học viên chỉ cần cách giải thích/ví dụ khác, một kênh hỏi thuận tiện hơn hoặc workaround hiện tại đã đủ tốt |
+
+### Lời mở đầu
+
+> Cảm ơn bạn đã tham gia. Nhóm mình đang tìm hiểu cách người học xử lý khi gặp một phần chưa hiểu trong quá trình học. Mình muốn nghe về trải nghiệm thực tế của bạn, không có câu trả lời đúng hay sai. Mình sẽ không giới thiệu hoặc xin nhận xét về một tính năng. Nếu bạn đồng ý, mình xin ghi âm cuộc trò chuyện chỉ để xem lại và làm bài học; bản ghi sẽ không được chia sẻ công khai.
+
+### 10 câu hỏi phỏng vấn
+
+#### Big 3.1 — Sự kiện gần nhất và hành vi thực tế
+
+1. Kể cho mình nghe về **lần gần nhất trong 7 ngày vừa qua** bạn gặp một đoạn giải thích hoặc bài tập chưa hiểu khi đang học.
+2. Lúc đó bạn đang học nội dung gì, ở trong bối cảnh nào và đang cố hoàn thành việc gì?
+3. Chuyện gì cụ thể khiến bạn nhận ra mình chưa hiểu hoặc không thể tiếp tục như dự định?
+4. Ngay sau đó bạn đã làm gì? Bạn có thể kể lại từng bước theo đúng trình tự không?
+
+#### Big 3.2 — Workaround, hậu quả và mức độ lặp lại
+
+5. Ngoài cách đầu tiên, bạn đã thử thêm cách nào khác? Vì sao lúc đó bạn chọn những cách đó?
+6. Trong toàn bộ quá trình xử lý, phần nào khó hoặc tốn công nhất đối với bạn?
+7. Việc chưa hiểu đó đã ảnh hưởng thế nào đến buổi học, tiến độ, bài làm hoặc quyết định tiếp tục/dừng lại của bạn?
+8. Lần gần nhất trước đó bạn gặp tình huống tương tự là khi nào? Khi ấy bạn đã xử lý ra sao?
+
+#### Big 3.3 — Nguyên nhân và evidence có thể bác bỏ giả thuyết
+
+9. Nếu cuối cùng bạn đã hiểu hoặc tiếp tục được, điều gì cụ thể đã giúp bạn? Sau đó có thay đổi gì cho thấy bạn đã hiểu hơn?
+10. So với lần vừa kể, hãy kể một lần gần đây khác mà bạn thoát khỏi chỗ vướng khá nhanh. Điều gì ở lần đó khác với lần này?
+
+### Probe bank — chỉ dùng khi cần đào sâu
+
+- “Lúc đó chuyện gì xảy ra tiếp theo?”
+- “Bạn đã làm gì cụ thể?”
+- “Vì sao bạn chọn cách đó?”
+- “Bạn đã thử cách nào khác chưa?”
+- “Việc đó kéo theo hậu quả gì?”
+- “Bạn mất khoảng bao nhiêu thời gian hoặc công sức?”
+- “Chi tiết nào khiến bạn nghĩ cách đó đã giúp?”
+- “Lần gần nhất trước đó là khi nào?”
+
+Không cần đọc máy móc toàn bộ 10 câu. Interviewer dùng câu 1 làm story opener, follow câu chuyện và chỉ chuyển sang câu khác khi evidence tương ứng chưa xuất hiện.
+
+
